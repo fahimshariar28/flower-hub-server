@@ -5,13 +5,13 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-backend-nazmulhasannasim333
+  git clone https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-backend-fahimshariar28.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd your-project-directory
+  cd l2-b2-assignment-6-backend-fahimshariar28.git
 ```
 
 Install dependencies
@@ -23,5 +23,5 @@ Install dependencies
 Start the server
 
 ```bash
- npm run start:dev
+ npm run dev
 ```
