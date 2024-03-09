@@ -9,7 +9,7 @@ const app: Application = express();
 
 // Parsers
 app.use(express.json());
-app.use(cors({ origin: "https://flower-hub.netlify.app", credentials: true }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Routes
 app.use("/api/auth", AuthRouter);
