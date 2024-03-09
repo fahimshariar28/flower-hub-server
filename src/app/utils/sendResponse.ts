@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from "express";
 
-type TResponse<T> = {
-  statusCode: number;
+type TResponseData<T> = {
   success: boolean;
-  message?: string;
-  data: T;
+  statusCode: number;
+  message: string;
+  data?: T;
 };
 
-const sendResponse = <T>(res: Response, data: TResponse<T>) => {
-  res.status(data.statusCode).json({
-    success: data.success,
-    message: data.message,
-    data: data.data,
+const sendResponseMessage = <T>(res: Response, data: TResponseData<T>) => {
+  res.status(data?.statusCode).json({
+    success: "true",
+    statusCode: data?.statusCode,
+    message: data?.message,
+    data: data?.data,
   });
 };
-
-export default sendResponse;
+export default sendResponseMessage;

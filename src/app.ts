@@ -1,30 +1,30 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
-import config from "./app/config";
+import notFound from "./app/middlewares/notFound";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
-import notFount from "./app/middlewares/notFount";
-import router from "./app/router";
+import { AuthRouter } from "./app/routes/authRoute";
+import { router } from "./app/routes";
+
 const app: Application = express();
 
-// parsers
+// Parsers
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://eye-glass-client.netlify.app",
-    credentials: true,
-  })
-);
+app.use(cors({ origin: "https://flower-hub.netlify.app", credentials: true }));
 
-app.get("/", (req: Request, res: Response) => {
-  res.send(`Server Running on port ${config.port}`);
+// Routes
+app.use("/api/auth", AuthRouter);
+app.use("/api/v1", router);
+
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  try {
+    res.send("Hello World!");
+  } catch (error) {
+    next(error);
+  }
 });
 
-app.use("/api", router);
-
-// global error handler middleware
 app.use(globalErrorHandler);
 
-// not found middleware
-app.use(notFount);
+app.use(notFound);
 
 export default app;

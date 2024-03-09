@@ -1,23 +1,31 @@
-import mongoose from "mongoose";
-import { TErrorSources, TGenericErrorResponse } from "../interface/error";
+import mongoose from 'mongoose';
+import { TErrorIssue, TErrorResponse } from './error.types';
 
-const handleDuplicateError = (err: any): TGenericErrorResponse => {
-  const match = err.message.match(/{[^}]*"(.*?)"/);
-  const extractedMessage = match && match[1];
-
-  const errorSources: TErrorSources = [
+const handlerDuplicateError = (
+  err: mongoose.Error.ValidationError,
+): TErrorResponse => {
+  const regex = /"(.*?)"/;
+  const matches = err.message.match(regex);
+  const issues: TErrorIssue[] = [
     {
-      path: "",
-      message: `${extractedMessage} already exist!`,
+      path: '',
+      message: `Duplicate value for ${matches![1]}`,
     },
   ];
 
-  const statusCode = 400;
   return {
-    statusCode,
-    message: "Invalid Value",
-    errorSources,
+    statusCode: 409,
+    success: false,
+    message: 'Duplicate Error',
+    errorMessage: `Duplicate value for ${matches![1]}`,
+    errorDetails: {
+      name: err.name,
+      message: err.message,
+      issues,
+      valueType: matches![1],
+      errorCode: 'duplicate_error',
+    },
   };
 };
 
-export default handleDuplicateError;
+export default handlerDuplicateError;

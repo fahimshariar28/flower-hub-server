@@ -1,32 +1,18 @@
-/* eslint-disable no-unused-vars */
+import catchAsyncFunc from '../../utils/catchAsyncFunc';
+import sendResponseMessage from '../../utils/sendResponse';
+import { authUserServices } from './user.services';
 
-import { UserServices } from "./user.service";
-import catchAsync from "../../utils/catchAsync";
-import sendResponse from "../../utils/sendResponse";
-import httpStatus from "http-status";
+const authUserRegister = catchAsyncFunc(async (req, res) => {
+  const user = await authUserServices.authUserRegisterIntoDB(req.body);
 
-const createUser = catchAsync(async (req, res) => {
-  const newUser = req.body;
-  const result = await UserServices.createUserIntoDB(newUser);
-  //   send response
-  sendResponse(res, {
+  sendResponseMessage(res, {
     success: true,
-    statusCode: httpStatus.OK,
-    message: "User created successfully",
-    data: result,
+    statusCode: 201,
+    message: 'User registered successfully',
+    data: user,
   });
 });
 
-const loginUser = catchAsync(async (req, res) => {
-  const result = await UserServices.loginUser(req.body);
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: "User login successfully",
-    data: {
-      accessToken: result,
-    },
-  });
-});
-
-export const UserController = { createUser, loginUser };
+export const authUserControllers = {
+  authUserRegister,
+};
