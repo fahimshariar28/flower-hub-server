@@ -21,7 +21,6 @@ export const UserSchema = new Schema<TUser>(
     },
     role: {
       enum: ["user", "admin"],
-      default: "user",
     },
   },
   {
