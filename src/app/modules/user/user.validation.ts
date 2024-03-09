@@ -21,8 +21,7 @@ const createUserValidationSchema = z.object({
         "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character",
     }),
 
-  role: z.string().optional(),
-  // role: z.enum(["user", "admin"]).optional(),
+  role: z.enum(["user", "admin"]).optional(),
 });
 
 export const UserValidations = {
