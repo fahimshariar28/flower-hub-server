@@ -18,13 +18,13 @@ Before you begin, make sure you have the following installed on your machine:
 ## Clone the repository:
 
 ```bash
-  git clone https://github.com/Porgramming-Hero-web-course/l2b2-full-stack-a5-server-side-fahimshariar28.git
+  git clone https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-backend-fahimshariar28
 ```
 
 ## Navigate to the project directory:
 
 ```bash
-  l2b2-full-stack-a5-server-side-fahimshariar28
+  l2-b2-assignment-6-backend-fahimshariar28
 ```
 
 ## Install the dependencies:
