@@ -20,7 +20,8 @@ export const UserSchema = new Schema<TUser>(
       required: true,
     },
     role: {
-      enum: ["user", "manager"],
+      type: String,
+      enum: ["seller", "manager"],
     },
   },
   {

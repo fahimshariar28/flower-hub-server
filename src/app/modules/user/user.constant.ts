@@ -1,4 +1,4 @@
 export const ROLE = {
-  user: "user",
+  seller: "seller",
   manager: "manager",
 } as const;
