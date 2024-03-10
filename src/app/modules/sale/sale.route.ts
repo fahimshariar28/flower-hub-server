@@ -8,11 +8,11 @@ const router = express.Router();
 
 router.post(
   "/",
-  authHelp("user"),
+  authHelp("seller", "manager"),
   validateZodRequest(SaleValidations.createSaleValidationSchema),
   SaleController.addSale
 );
 
-router.get("/", authHelp("user"), SaleController.getSales);
+router.get("/", authHelp("seller", "manager"), SaleController.getSales);
 
 export const SaleRoute = router;
