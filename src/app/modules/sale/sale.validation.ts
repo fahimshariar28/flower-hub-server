@@ -7,6 +7,9 @@ const createSaleValidationSchema = z.object({
   quantity: z.number({
     required_error: "Quantity is required",
   }),
+  price: z.number({
+    required_error: "Price is required",
+  }),
   buyerName: z.string({
     required_error: "Buyer name is required",
   }),

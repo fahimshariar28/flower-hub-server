@@ -11,6 +11,10 @@ export const SaleSchema = new Schema<TSale>({
     type: Number,
     required: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
   buyerName: {
     type: String,
     required: true,
