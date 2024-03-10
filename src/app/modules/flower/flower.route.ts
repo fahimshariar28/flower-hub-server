@@ -8,22 +8,22 @@ const router = express.Router();
 
 router.post(
   "/",
-  authHelp("user"),
+  authHelp("manager"),
   validateZodRequest(FlowerValidations.createFlowerValidationSchema),
   FlowerController.addFlower
 );
 
-router.get("/", authHelp("user"), FlowerController.getAllFlowers);
+router.get("/", authHelp("seller", "manager"), FlowerController.getAllFlowers);
 
-router.get("/:id", authHelp("user"), FlowerController.getFlower);
+router.get("/:id", authHelp("seller", "manager"), FlowerController.getFlower);
 
 router.put(
   "/:id",
-  authHelp("user"),
+  authHelp("manager"),
   validateZodRequest(FlowerValidations.updateFlowerValidationSchema),
   FlowerController.updateFlower
 );
 
-router.delete("/", authHelp("user"), FlowerController.deleteFlower);
+router.delete("/", authHelp("manager"), FlowerController.deleteFlower);
 
 export const FlowerRoute = router;
